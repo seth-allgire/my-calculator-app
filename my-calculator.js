@@ -3,8 +3,11 @@ const displayValue = document.querySelector(".operand");
 const memoryDisplay = document.querySelector(".first-operand");
 const numberButtons = document.querySelectorAll(".number");
 const operatorButtons = document.querySelectorAll(".operator");
+const calculateButton = document.querySelector(".equals");
 const clearEntry = document.querySelector(".clear-entry");
 const clearEverything = document.querySelector(".clear-all");
+const firstOperand = memoryDisplay.innerText;
+const secondOperand = displayValue.innerText;
 
 numberButtons.forEach(() => {
   addEventListener("click", updateDisplay);
@@ -14,6 +17,24 @@ function updateDisplay(e) {
   if (e.target.classList.contains("number")) {
     let display = e.target.value;
     displayValue.innerText += display;
+    console.log(e.target.value);
+  }
+}
+
+operatorButtons.forEach(() => {
+  addEventListener("click", operator);
+});
+
+function operator(e) {
+  if (
+    e.target.classList.contains("operator") &&
+    displayValue.innerText !== "" &&
+    displayValue.innerText
+  ) {
+    let display = e.target.value;
+    displayValue.innerText += display;
+    memoryDisplay.innerText = displayValue.innerText;
+    displayValue.innerText = "";
     console.log(e.target.value);
   }
 }

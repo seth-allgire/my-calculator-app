@@ -3,6 +3,7 @@ const displayValue = document.querySelector(".operand");
 const memoryDisplay = document.querySelector(".first-operand");
 const operationDisplay = document.querySelector(".operation");
 const numberButtons = document.querySelectorAll(".number");
+const decimalButton = document.querySelector(".decimal-point");
 const operatorButtons = document.querySelectorAll(".operator");
 const calculateButton = document.querySelector(".equals");
 const clearEntry = document.querySelector(".clear-entry");
@@ -19,6 +20,16 @@ numberButtons.forEach(() => {
 function updateDisplay(e) {
   if (e.target.classList.contains("number")) {
     let display = e.target.value;
+    displayValue.innerText += display;
+    console.log(e.target.value);
+  }
+}
+
+decimalButton.addEventListener("click", useDecimal);
+
+function useDecimal(e) {
+  let display = e.target.value;
+  if (e.target.classList.contains("decimal-point")) {
     displayValue.innerText += display;
     console.log(e.target.value);
   }
@@ -44,8 +55,8 @@ function operator(e) {
 calculateButton.addEventListener("click", calculate);
 
 function calculate() {
-  firstOperandValue = parseInt(memoryDisplay.innerText);
-  secondOperandValue = parseInt(displayValue.innerText);
+  firstOperandValue = parseFloat(memoryDisplay.innerText);
+  secondOperandValue = parseFloat(displayValue.innerText);
   memoryDisplay.innerText = "";
   operationDisplay.innerText = "";
 
